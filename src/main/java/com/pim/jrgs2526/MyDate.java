@@ -39,6 +39,19 @@ public class MyDate {
     private Months month;
     private int year;
 
+    public MyDate() {
+        this(1, Months.JANUARY, 2000);
+    }
+
+    public MyDate(int days, Months month, int year) {
+        if(month == null || days < 1 || days > maxDaysMonth(month, year)) {
+            throw new IllegalArgumentException(ERR_INVALID_DATE);
+        }
+        this.day = days;
+        this.month = month;
+        this.year = year;
+    }
+
     public static int maxDaysMonth(Months month, int year){
         if (month == null) {
             return -1;
@@ -54,19 +67,6 @@ public class MyDate {
             default:
                 return 31;
         }
-    }
-
-    public MyDate() {
-        this(1, Months.JANUARY, 2000);
-    }
-
-    public MyDate(int days, Months month, int year) {
-        if(month == null || days < 1 || days > maxDaysMonth(month, year)) {
-            throw new IllegalArgumentException(ERR_INVALID_DATE);
-        }
-        this.day = days;
-        this.month = month;
-        this.year = year;
     }
 
     public int getDay() {
